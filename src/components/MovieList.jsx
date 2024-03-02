@@ -1,10 +1,11 @@
 import axios from "axios";
 import { FaRegHeart } from "react-icons/fa";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-function MovieList({ title, url, id }) {
+function MovieList({ title, url }) {
   const [movieList, setMovieList] = useState([]);
+  const sliderRef = useRef()
 
   useEffect(() => {
     const handleGetList = async () => {
@@ -21,22 +22,22 @@ function MovieList({ title, url, id }) {
   }, [url]);
 
   const handleSlideRight = () => {
-    let slider = document.getElementById(`slide${id}`)
+    // let slider = document.getElementById(`slide${id}`)
 
-    slider.scrollLeft = slider.scrollLeft + 500 
+    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft + 500 
   }
 
   const handleSlideLeft = () => {
-    let slider = document.getElementById(`slide${id}`)
+    // let slider = document.getElementById(`slide${id}`)
 
-    slider.scrollLeft = slider.scrollLeft - 500
+    sliderRef.current.scrollLeft = sliderRef.current.scrollLeft - 500
   }
 
   return (
     <>
       <h1 className="p-4 text-xl font-semibold text-white md:p-8">{title}</h1>
       <div className="relative flex items-center group">
-        <div className="overflow-x-scroll h-full w-full whitespace-nowrap scrollbar-hide scroll-smooth" id={`slide${id}`}>
+        <div ref={sliderRef} className="overflow-x-scroll h-full w-full whitespace-nowrap scrollbar-hide scroll-smooth">
           {movieList.map((movie, i) => (
             <div className="inline-block relative whitespace-nowrap p-2 w-40 cursor-pointer" key={i}>
               <img className="object-cover" src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
