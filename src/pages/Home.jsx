@@ -8,10 +8,10 @@ function Home() {
     <>
       <Navbar />
       <Movie />
-      <MovieList id="1" title="Top Rated" url={request.topRated} />
-      <MovieList id="2" title="Trending" url={request.trending} />
-      <MovieList id="3" title="UpComing" url={request.upComing} />
-      <MovieList id="4" title="Horror" url={request.horror} />
+      <MovieList title="Top Rated" url={request.topRated} />
+      <MovieList title="Trending" url={request.trending} />
+      <MovieList title="UpComing" url={request.upComing} />
+      <MovieList title="Horror" url={request.horror} />
     </>
   );
 }
